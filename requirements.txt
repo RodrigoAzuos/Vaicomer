@@ -1,0 +1,11 @@
+Django==1.11.4
+django-appconf==1.0.2
+django-filters==0.2.1
+django-imagekit==4.0.1
+django-material==1.1.1
+djangorestframework==3.7.1
+Markdown==2.6.9
+pilkit==2.0
+psycopg2==2.7.3.2
+pytz==2017.2
+six==1.10.0
