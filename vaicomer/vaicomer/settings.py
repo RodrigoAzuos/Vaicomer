@@ -32,6 +32,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    # material design
+    'material.theme.green',
+    'material',
+    'material.admin',
+
+    # pradão
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

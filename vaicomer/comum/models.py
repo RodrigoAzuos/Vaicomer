@@ -19,9 +19,8 @@ class Perfil(Base):
     )
 
     TURNO_CHOICES = (
-        ('manha', 'Manhã' ),
-        ('tarde', 'Tarde' ),
-        ('noite', 'Noite'),
+        ('diurno', 'Diurno' ),
+        ('notuno', 'Noturno' ),
     )
 
     sexo = models.CharField('Sexo', max_length=16,choices=SEXO_CHOICES, blank=False, null=False)
