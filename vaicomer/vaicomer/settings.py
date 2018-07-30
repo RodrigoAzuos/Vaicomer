@@ -48,6 +48,12 @@ INSTALLED_APPS = [
 
     #vaicomer
     'comum',
+    'api',
+
+    #DRF
+
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
