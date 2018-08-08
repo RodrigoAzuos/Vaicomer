@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from .serializers import PerfilSerializer, PratoSerializer, RefeicaoSerializer
 from comum.models import Perfil, Refeicao, Prato
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from datetime import datetime, date
 
 # Create your views here.
 
@@ -41,11 +42,8 @@ class RefeicaoViewSet(DefaultMixin, viewsets.ReadOnlyModelViewSet):
             elif request.user.perfil.turno == 'notruno':
                 queryset = self.filter_queryset(Refeicao.objects.filter(tipo='jantar'))
 
-            page = self.paginate_queryset(queryset)
-
-            if page is not None:
-                serializer = self.get_serializer(queryset, many=True)
-                return  self.get_paginated_response(serializer.data)
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
 
         queryset = self.filter_queryset(Refeicao.objects.all())
         serializer = self.get_serializer(queryset, many=True)
@@ -96,6 +94,33 @@ class MinhasRefeicoesViweSet(DefaultMixin, viewsets.ReadOnlyModelViewSet):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+
+class RefeicaoFiltroData(DefaultMixin, viewsets.ReadOnlyModelViewSet):
+
+    queryset = Refeicao.objects.filter(pk=1)
+    serializer_class = RefeicaoSerializer
+
+    def list(self, request, data, *args, **kwargs):
+        url_data = data.split("-")
+        data_comparacao = date(int(url_data[2]),int(url_data[1]),int(url_data[0]))
+
+        queryset = self.filter_queryset(Refeicao.objects.filter(data=data_comparacao))
+
+        if not request.user.perfil.nutricionista:
+
+            if request.user.perfil.turno == 'diurno':
+                queryset = queryset.filter(tipo='almoco')
+            elif request.user.perfil.turno == 'notruno':
+                queryset = queryset.filter(tipo='jantar')
+
+            serializer = self.get_serializer(queryset, many=True)
+            return Response(serializer.data)
+
+        queryset = self.filter_queryset(Refeicao.objects.filter(data=data_comparacao))
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
 
 
 

@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^refeicoes/(?P<refeicao_pk>\d+)/interesse/$', views.RefeicaoViewSet.adcionar_interessado, name='adcionar'),
     url(r'^refeicoes/(?P<refeicao_pk>\d+)/desinteresse/$', views.RefeicaoViewSet.remover_interessado, name='remover'),
+    url(r'^refeicao/(?P<data>\d{2}-\d{2}-\d{4})/$', views.RefeicaoFiltroData.as_view({'get': 'list'}), name='refeicoes'),
+
 ]
