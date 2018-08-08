@@ -69,7 +69,7 @@ class RefeicaoViewSet(DefaultMixin, viewsets.ReadOnlyModelViewSet):
     def remover_interessado(request, refeicao_pk):
 
         try:
-            refeicao = Refeicao.objects.filter(pk=refeicao_pk)
+            refeicao = Refeicao.objects.get(pk=refeicao_pk)
             perfil = request.user.perfil
             refeicao.remover_interessado(perfil)
             return Response({"detail": "Interesse removido"}, status=status.HTTP_200_OK)

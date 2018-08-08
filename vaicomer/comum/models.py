@@ -94,9 +94,8 @@ class Refeicao(Base):
             return "Você não pode demonstrar interesse nesta refeição."
 
     def remover_interessado(self, perfil):
-        if perfil in self.interessados:
-            self.interessados.remove(perfil)
-            self.save()
+        self.interessados.remove(perfil)
+        self.save()
 
     def ativo(self):
         hoje = datetime.now().date()
