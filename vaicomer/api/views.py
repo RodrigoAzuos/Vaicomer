@@ -55,7 +55,7 @@ class RefeicaoViewSet(DefaultMixin, viewsets.ReadOnlyModelViewSet):
     def adcionar_interessado(request, refeicao_pk):
 
         try:
-            refeicao = Refeicao.objects.filter(pk=refeicao_pk)
+            refeicao = Refeicao.objects.get(pk=refeicao_pk)
             perfil = request.user.perfil
             mensagem = refeicao.adicionar_interessado(perfil)
             return Response({"detail": mensagem}, status=status.HTTP_200_OK)

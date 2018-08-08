@@ -12,7 +12,7 @@ class PerfilAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': (('sexo', 'turno',), 'usuario',)
+            'fields': (('sexo', 'turno',), ('usuario','nutricionista'),)
         }),
     )
 
@@ -42,7 +42,7 @@ class RefeicaoAdmin(admin.ModelAdmin):
 
 
     def save_model(self, request, refeicao, form, change):
-        if request.user.is_superuser:
+        if not request.user.is_superuser:
             refeicao.nutricionista = request.user.perfil
             refeicao.save()
 

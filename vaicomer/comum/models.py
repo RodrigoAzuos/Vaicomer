@@ -86,7 +86,7 @@ class Refeicao(Base):
         return quantidade
 
     def adicionar_interessado(self, perfil):
-        if perfil not in self.interessados and self.ativo():
+        if self.ativo():
             self.interessados.add(perfil)
             self.save()
             return "Interesse demonstrado com sucesso!"
