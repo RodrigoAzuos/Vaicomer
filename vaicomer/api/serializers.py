@@ -20,5 +20,5 @@ class RefeicaoSerializer(serializers.ModelSerializer):
     nutricionista = PerfilSerializer(many=False, read_only=True)
     class Meta:
         model = Refeicao
-        fields = ('id', 'tipo', 'data', 'prato', 'nutricionista', 'ativo','quantidade_interessados',)
-        read_only_fields = ('id', 'nutricionista', 'ativo', )
+        fields = ('id', 'tipo', 'data', 'prato', 'nutricionista', 'ativo','quantidade_interessados','interessados',)
+        read_only_fields = ('id', 'nutricionista', 'ativo', 'interessados', )
